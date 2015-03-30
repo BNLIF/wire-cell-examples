@@ -1,0 +1,21 @@
+#+TITLE: Wire Cell Examples
+
+This packages holds some examples of how to use the wire-cell packages.  
+
+* Installation
+
+For building, see the package [[https://github.com/BNLIF/wire-cell]].
+
+* Examples
+
+ - [[./apps/wire-cell-example-loop.cxx]] :: main C++ application which shows how to load the geometry and spin through frames and their slices as loaded from an [[https://github.com/BNLIF/wire-cell-sst][sst]] file.  Run like:
+
+#+BEGIN_EXAMPLE
+  $ wire-cell-example-loop /path/to/ChannelWireGeometry.txt /path/to/celltree.root
+#+END_EXAMPLE
+
+* Examples needed
+
+ - ROOT C++ script
+ - PyROOT script
+
