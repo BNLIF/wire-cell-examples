@@ -78,7 +78,8 @@ int main(int argc, char* argv[])
 		time_t now = time(0);
 		cerr << "slice #" << islice
 		     << " time elapsed in frame: " << now-start_frame_time
-		     << " slice tbin:" << slice.tbin << " with " << slice.charge.size() << " wires"
+		     << " slice tbin:" << slice.tbin() 
+		     << " with " << slice.group().size() << " wires"
 		     << endl;
 	    }
 
