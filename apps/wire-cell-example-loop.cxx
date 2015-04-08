@@ -41,7 +41,7 @@ int main(int argc, char* argv[])
     WireCellSst::FrameDataSource fds(*tree);
     
     start_time = time(0);
-    WireCell::SliceDataSource sds(fds, gds);
+    WireCell::SliceDataSource sds(fds);
     now = time(0);
     cerr << "Loaded slice data source in " << now - start_time << endl;    
     
