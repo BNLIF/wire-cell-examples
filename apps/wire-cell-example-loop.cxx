@@ -1,6 +1,8 @@
+#include "WireCellNav/GeomDataSource.h"
+#include "WireCellSst/GeomWireReader.h"
+
 #include "WireCellNav/SliceDataSource.h"
 #include "WireCellSst/FrameDataSource.h"
-#include "WireCellSst/GeomDataSource.h"
 #include "WireCellTiling/TileMaker.h"
 
 #include "TFile.h"
@@ -22,9 +24,10 @@ int main(int argc, char* argv[])
 
     // Get wire geometry
     start_time = time(0);
-    ifstream geotext(argv[1]);
-    WireCellSst::GeomDataSource gds;
-    gds.load(geotext);
+    WireCellSst::GeomWireReader reader(argv[1]);
+    WireCell::GeomDataSource gds;
+    gds.use_wires(reader);
+
     now = time(0);
     cerr << "Loaded geometry in " << now - start_time << endl;
 
