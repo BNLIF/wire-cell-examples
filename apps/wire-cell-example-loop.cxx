@@ -1,7 +1,7 @@
-#include "WireCellNav/SliceDataSource.h"
-#include "WireCellSst/FrameDataSource.h"
-#include "WireCellSst/GeomDataSource.h"
-#include "WireCellTiling/TileMaker.h"
+#include "WCPNav/SliceDataSource.h"
+#include "WCPSst/FrameDataSource.h"
+#include "WCPSst/GeomDataSource.h"
+#include "WCPTiling/TileMaker.h"
 
 #include "TFile.h"
 #include "TTree.h"
@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
     // Get wire geometry
     start_time = time(0);
     ifstream geotext(argv[1]);
-    WireCellSst::GeomDataSource gds;
+    WCPSst::GeomDataSource gds;
     gds.load(geotext);
     now = time(0);
     cerr << "Loaded geometry in " << now - start_time << endl;
@@ -31,17 +31,17 @@ int main(int argc, char* argv[])
     
     // One of the basic cell tilings
     start_time = time(0);
-    WireCell::TileMaker tiling(gds);
+    WCP::TileMaker tiling(gds);
     now = time(0);
     cerr << "Loaded tiling in " << now - start_time << endl;    
 
     // open data file to make frame data source
     TFile* tfile = TFile::Open(argv[2]);
     TTree* tree = dynamic_cast<TTree*>(tfile->Get("/Event/Sim"));
-    WireCellSst::FrameDataSource fds(*tree);
+    WCPSst::FrameDataSource fds(*tree);
     
     start_time = time(0);
-    WireCell::SliceDataSource sds(fds);
+    WCP::SliceDataSource sds(fds);
     now = time(0);
     cerr << "Loaded slice data source in " << now - start_time << endl;    
     
@@ -73,7 +73,7 @@ int main(int argc, char* argv[])
 		exit(1); // real code may want to do something less drastic
 	    }
 
-	    const WireCell::Slice& slice = sds.get();
+	    const WCP::Slice& slice = sds.get();
 	    if (islice%1000 == 1) {
 		time_t now = time(0);
 		cerr << "slice #" << islice

@@ -1,2 +1,2 @@
 #!/usr/bin/env python
-bld.make_package('WireCellExamples', use='WireCellNav WireCellData WireCellTiling WireCellSst')
+bld.make_package('WCPExamples', use='WCPNav WCPData WCPTiling WCPSst')
